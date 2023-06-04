@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="snicorp.snd.migration.mapper.old.OldMemberMapper">
+  <select id="getOldUser" resultType="snicorp.snd.migration.dto.old.OldMember" parameterType="String">
+
+    select * from TN_BASS_MEMBER_INFO;
+
+</select>
+  <select id="countAll" resultType="Integer">
+    select count(*)
+    from life_report
+  </select>
+  <select id="findMemberAuth" resultType="String" parameterType="String">
+
+
+    SELECT	CASE WHEN A.MEMBER_TY_CODE = '00000' THEN 'ROLE_ADMIN'
+                   WHEN A.MEMBER_TY_CODE IN ('20000', '10000', '11000') THEN 'ROLE_MANAGER'
+                   ELSE 'ROLE_USER'
+                END AS AUTH_ID
+    FROM	TN_BASS_MEMBER_INFO A
+    WHERE	1=1
+      AND 	A.MEMBER_ID = #{username}
+      AND		A.MEMBER_TY_CODE NOT IN ('40000', '33000')	/* 사용자유형이 일반사용자와 특수이용자_상가는 제외 */
+      AND		A.USE_AT = 'Y'
+      AND		A.DRMNCY_AT = 'N'
+      AND		A.SECESSION_AT = 'N'
+  </select>
+
+</mapper>

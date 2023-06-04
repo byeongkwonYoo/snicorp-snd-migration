@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://rds-dev-hipineapple-bds-an2.ciizug3wkvtz.ap-northeast-2.rds.amazonaws.com:5432/fms?currentSchema=fms
+    username: fms
+    password: fms2020
+  data:
+    redis:
+      host: redis-dev-hipineapple-cos-an2.yqnskf.clustercfg.apn2.cache.amazonaws.com
+      port: 6379

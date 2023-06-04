@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    old:
+      jdbcUrl: jdbc:postgresql://127.0.0.1:25432/fms_old?currentSchema=fms
+      username: fms
+      password: fms2020
+    sandi:
+      jdbcUrl: jdbc:postgresql://127.0.0.1:25432/fms?currentSchema=fms
+      username: fms
+      password: fms2020
+  jwt:
+    secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHa
+    live:
+      atk: 60000
+      rtk: 300000
+    loginUrl: /oauth2/token
+    reissueUrl: /oauth2/reissue
+  data:
+    redis:
+      host: localhost
+      port: 26379

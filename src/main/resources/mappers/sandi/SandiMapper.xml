@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="snicorp.snd.migration.mapper.sandi.SandiMemberMapper">
+
+    <delete id="deleteUser">
+        delete from hpa_user;
+    </delete>
+
+    <select  id="resetSeq">
+
+        ALTER SEQUENCE hpa_user_seq RESTART WITH 1
+
+    </select>
+  <insert id="insertMember" parameterType="Member">
+
+      <selectKey keyProperty="userId" resultType="int" order="BEFORE">
+          select nextval('hpa_user_seq')
+      </selectKey>
+    insert into hpa_user (user_id, email,  password, password_updated_at, nickname, name, mobile_number,
+                          gender, is_closed, member_ty_code, member_ci, pass_fail_cnt, admin_nickname, birthday,
+                          mylgid_join_yn, affmemcd, qr_value, pricert_yn, reg_id, created_at, mod_id, updated_at)
+    values (#{userId},
+            #{email},
+            #{password},
+            #{passwordUpdatedAt},
+            #{nickname},
+            #{name},
+            #{mobileNumber},
+            #{gender},
+            #{isClosed},
+            #{memberTyCode},
+            #{memberCi},
+            #{passFailCnt},
+            #{adminNickname},
+            #{birthday},
+            #{mylgidJoinYn},
+            #{affmemcd},
+            #{qrValue},
+            #{pricertYn},
+            #{regId},
+            #{createdAt},
+            #{modId},
+            #{updatedAt}
+
+ );
+</insert>
+
+</mapper>
