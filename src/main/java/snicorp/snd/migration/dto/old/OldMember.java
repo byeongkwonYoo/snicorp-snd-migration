@@ -2,6 +2,7 @@ package snicorp.snd.migration.dto.old;
 
 import lombok.*;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Getter
@@ -23,10 +24,10 @@ private String memberTyCode;
 private String mvnCmpnyCode;
 private String atmcLoginAt;
 private String drmncyAt;
-private String drmncyAppnDt;
+private Timestamp drmncyAppnDt;
 private String useAt;
 private String secessionAt;
-private String secessionDt;
+private Timestamp secessionDt;
 private String lastLoginDt;
 private String rsaKey;
 private String regId;

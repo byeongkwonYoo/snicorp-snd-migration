@@ -20,7 +20,7 @@ public class Member{
     private String name;
     private String mobileNumber;
     private String gender;
-    private Boolean isClosed;
+    private String isClosed;
     private String memberTyCode;
     private String memberCi;
     private int passFailCnt;
@@ -34,5 +34,8 @@ public class Member{
     private Timestamp createdAt;
     private String modId;
     private Timestamp updatedAt;
-
+    private String isDormancy;
+    private String useYn;
+    private Timestamp closedAt;
+    private Timestamp dormancyAt;
 }

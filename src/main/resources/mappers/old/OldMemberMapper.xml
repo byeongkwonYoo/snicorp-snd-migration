@@ -3,7 +3,7 @@
 <mapper namespace="snicorp.snd.migration.mapper.old.OldMemberMapper">
   <select id="getOldUser" resultType="snicorp.snd.migration.dto.old.OldMember" parameterType="String">
 
-    select * from TN_BASS_MEMBER_INFO;
+    select * from TN_BASS_MEMBER_INFO
 
 </select>
   <select id="countAll" resultType="Integer">
@@ -25,5 +25,9 @@
       AND		A.DRMNCY_AT = 'N'
       AND		A.SECESSION_AT = 'N'
   </select>
+  <select id="getOldMobileUser" resultType="snicorp.snd.migration.dto.old.OldMobileMember" parameterType="String">
 
+    select * from MV_BASS_MEMBER_INFO where member_id=#{member_id};
+
+  </select>
 </mapper>

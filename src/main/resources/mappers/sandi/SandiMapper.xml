@@ -3,22 +3,25 @@
 <mapper namespace="snicorp.snd.migration.mapper.sandi.SandiMemberMapper">
 
     <delete id="deleteUser">
-        delete from hpa_user;
+        delete from "user";
     </delete>
-
+    <delete id="deleteUserDormancy">
+        delete from "user_dormancy";
+    </delete>
     <select  id="resetSeq">
 
-        ALTER SEQUENCE hpa_user_seq RESTART WITH 1
+        ALTER SEQUENCE user_seq RESTART WITH 1
 
     </select>
   <insert id="insertMember" parameterType="Member">
 
       <selectKey keyProperty="userId" resultType="int" order="BEFORE">
-          select nextval('hpa_user_seq')
+          select nextval('user_seq')
       </selectKey>
-    insert into hpa_user (user_id, email,  password, password_updated_at, nickname, name, mobile_number,
+    insert into "user" (user_id, email,  password, password_updated_at, nickname, name, mobile_number,
                           gender, is_closed, member_ty_code, member_ci, pass_fail_cnt, admin_nickname, birthday,
-                          mylgid_join_yn, affmemcd, qr_value, pricert_yn, reg_id, created_at, mod_id, updated_at)
+                          mylgid_join_yn, affmemcd, qr_value, pricert_yn, reg_id, created_at, mod_id, updated_at,
+                          is_dormancy,use_yn,closed_at,dormancy_at)
     values (#{userId},
             #{email},
             #{password},
@@ -40,9 +43,17 @@
             #{regId},
             #{createdAt},
             #{modId},
-            #{updatedAt}
+            #{updatedAt},
+            #{isDormancy},
+            #{useYn},
+            #{closedAt},
+            #{dormancyAt}
 
  );
 </insert>
+    <insert id="insertDormacy" parameterType="MemberDormancy">
+        insert into user_dormancy (user_id, packing_data, created_at)
+        values (#{userId},CAST(#{packingData} AS json),CURRENT_TIMESTAMP);
+    </insert>
 
 </mapper>

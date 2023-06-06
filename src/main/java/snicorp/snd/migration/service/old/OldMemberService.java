@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 import snicorp.snd.migration.dto.old.OldMember;
+import snicorp.snd.migration.dto.old.OldMobileMember;
 import snicorp.snd.migration.mapper.old.OldMemberMapper;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public class OldMemberService {
 
     public List<OldMember> getOldUser(){
         return oldMemberMapper.getOldUser();
+    }
+    public OldMobileMember getOldMobileUser(String member_id){
+        return oldMemberMapper.getOldMobileUser(member_id);
     }
 
 }
